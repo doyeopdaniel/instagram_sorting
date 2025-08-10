@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Reels Analyzer for Instagram",
+  "version": "1.0.0",
+  "description": "See What Instagram Doesn't Show You - Analyze reach rates, engagement, and control playback speed",
+  "author": "Reels Analyzer Team",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "externally_connectable": {
+    "matches": ["https://extensionpay.com/*"]
+  },
+  "host_permissions": [
+    "https://www.instagram.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

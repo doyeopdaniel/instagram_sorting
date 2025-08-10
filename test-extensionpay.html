@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExtensionPay Test</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #0095f6;
+        }
+        button { 
+            background: #0095f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 8px 8px 8px 0;
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background: #0074cc;
+            transform: translateY(-1px);
+        }
+        .status { 
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        h1 { color: #262626; margin-bottom: 10px; }
+        h2 { color: #495057; margin-top: 25px; }
+        .feature-list {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .feature-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 ExtensionPay 통합 테스트</h1>
+        <p>이 페이지는 ExtensionPay 통합이 올바르게 작동하는지 테스트합니다.</p>
+
+        <div class="test-section">
+            <h2>📊 현재 상태</h2>
+            <div id="userStatus" class="status info">상태 확인 중...</div>
+            <button onclick="checkUserStatus()">🔄 상태 새로고침</button>
+        </div>
+
+        <div class="test-section">
+            <h2>💳 결제 테스트</h2>
+            <button onclick="openPaymentPage()">💳 결제 페이지 열기</button>
+            <button onclick="openLoginPage()">🔑 로그인 페이지 열기</button>
+            <button onclick="openTrialPage()">🆓 무료 체험 시작</button>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 기능 테스트</h2>
+            <button onclick="testFreeFeature()">🆓 무료 기능 테스트</button>
+            <button onclick="testProFeature()">✨ Pro 기능 테스트</button>
+            <button onclick="recordUsage()">📊 사용량 기록</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 기능 목록</h2>
+            <div class="feature-list">
+                <h3>🆓 무료 기능</h3>
+                <ul>
+                    <li>✅ 일일 3회 분석</li>
+                    <li>✅ 기본 리치율 측정</li>
+                    <li>✅ 기본 엥게이지먼트 분석</li>
+                </ul>
+                
+                <h3>✨ Pro 기능</h3>
+                <ul>
+                    <li>🚀 무제한 분석</li>
+                    <li>📊 고급 메트릭</li>
+                    <li>📄 데이터 내보내기</li>
+                    <li>⚡ 실시간 업데이트</li>
+                    <li>🎯 커스텀 필터</li>
+                    <li>📈 대량 분석</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 로그</h2>
+            <div id="log" class="log">테스트 시작...\n</div>
+            <button onclick="clearLog()">🗑️ 로그 지우기</button>
+        </div>
+    </div>
+
+    <script src="extpay.js"></script>
+    <script>
+        // Mock ExtPay for testing
+        const extpay = ExtPay('test-extension');
+        
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.textContent += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateStatus(message, type) {
+            const statusDiv = document.getElementById('userStatus');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+
+        async function checkUserStatus() {
+            try {
+                log('사용자 상태 확인 중...');
+                const user = await extpay.getUser();
+                
+                if (user.paid) {
+                    updateStatus('✨ Pro 사용자 - 모든 기능 이용 가능', 'success');
+                    log('✅ Pro 사용자 확인됨');
+                } else {
+                    updateStatus('🆓 무료 사용자 - 제한된 기능 이용 가능', 'info');
+                    log('ℹ️ 무료 사용자 확인됨');
+                }
+                
+                log(`사용자 정보: ${JSON.stringify(user, null, 2)}`);
+            } catch (error) {
+                updateStatus('❌ 상태 확인 실패', 'error');
+                log(`❌ 오류: ${error.message}`);
+            }
+        }
+
+        function openPaymentPage() {
+            log('💳 결제 페이지 열기...');
+            try {
+                extpay.openPaymentPage();
+                log('✅ 결제 페이지 열림');
+            } catch (error) {
+                log(`❌ 결제 페이지 오류: ${error.message}`);
+            }
+        }
+
+        function openLoginPage() {
+            log('🔑 로그인 페이지 열기...');
+            try {
+                extpay.openLoginPage();
+                log('✅ 로그인 페이지 열림');
+            } catch (error) {
+                log(`❌ 로그인 페이지 오류: ${error.message}`);
+            }
+        }
+
+        function openTrialPage() {
+            log('🆓 무료 체험 페이지 열기...');
+            try {
+                extpay.openTrialPage();
+                log('✅ 무료 체험 페이지 열림');
+            } catch (error) {
+                log(`❌ 무료 체험 페이지 오류: ${error.message}`);
+            }
+        }
+
+        async function testFreeFeature() {
+            log('🆓 무료 기능 테스트...');
+            try {
+                // 무료 기능 시뮬레이션
+                const canUse = Math.random() > 0.3; // 70% 확률로 성공
+                
+                if (canUse) {
+                    log('✅ 무료 기능 실행 성공 (기본 분석)');
+                } else {
+                    log('⚠️ 일일 무료 사용 한도 초과');
+                }
+            } catch (error) {
+                log(`❌ 무료 기능 오류: ${error.message}`);
+            }
+        }
+
+        async function testProFeature() {
+            log('✨ Pro 기능 테스트...');
+            try {
+                const user = await extpay.getUser();
+                
+                if (user.paid) {
+                    log('✅ Pro 기능 실행 성공 (고급 분석)');
+                    log('📊 고급 메트릭 데이터 생성');
+                    log('📄 내보내기 기능 활성화');
+                } else {
+                    log('🔒 Pro 기능은 유료 사용자만 이용 가능합니다');
+                    log('💳 결제 페이지로 이동하시겠습니까?');
+                }
+            } catch (error) {
+                log(`❌ Pro 기능 오류: ${error.message}`);
+            }
+        }
+
+        function recordUsage() {
+            log('📊 사용량 기록 중...');
+            try {
+                // 사용량 기록 시뮬레이션
+                const usageCount = Math.floor(Math.random() * 3) + 1;
+                log(`✅ 사용량 기록됨: ${usageCount}회`);
+                log(`📈 오늘 남은 무료 사용: ${3 - usageCount}회`);
+            } catch (error) {
+                log(`❌ 사용량 기록 오류: ${error.message}`);
+            }
+        }
+
+        function clearLog() {
+            document.getElementById('log').textContent = '로그 초기화됨...\n';
+        }
+
+        // 페이지 로드 시 초기 상태 확인
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🚀 ExtensionPay 테스트 페이지 로드됨');
+            log('⚙️ ExtPay 라이브러리 초기화 중...');
+            
+            setTimeout(() => {
+                checkUserStatus();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

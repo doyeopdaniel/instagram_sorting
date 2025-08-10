@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reels Analyzer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="header">
+      <h1>🚀 Reels Analyzer</h1>
+      <p class="tagline">See What Instagram Doesn't Show You</p>
+    </div>
+
+    <!-- License Status -->
+    <div class="license-section" id="licenseSection">
+      <div class="free-usage" id="freeUsage" style="display: none;">
+        <p class="usage-text">Free uses today: <span id="freeUsesRemaining">3</span>/3</p>
+        <button class="upgrade-btn" id="upgradeBtn">💳 Get Pro Access</button>
+        <button class="login-btn" id="loginBtn">🔑 Already Paid? Login</button>
+      </div>
+      <div class="pro-badge" id="proBadge" style="display: none;">
+        <span class="badge">✨ PRO</span>
+        <p>Unlimited Analysis</p>
+        <button class="refresh-btn" id="refreshBtn">🔄 Refresh Status</button>
+      </div>
+    </div>
+
+    <!-- Recent Accounts -->
+    <div class="section">
+      <h2>📱 Recent Accounts</h2>
+      <div class="recent-accounts" id="recentAccounts">
+        <p class="empty-state">No recent accounts yet</p>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="section">
+      <h2>⚙️ Settings</h2>
+      <div class="setting-item">
+        <label for="defaultSpeed">Default Speed:</label>
+        <select id="defaultSpeed" class="setting-select">
+          <option value="0.5">0.5x</option>
+          <option value="1" selected>1x</option>
+          <option value="1.5">1.5x</option>
+          <option value="2">2x</option>
+          <option value="3">3x</option>
+          <option value="4">4x</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label for="filterRange">Default Filter:</label>
+        <select id="filterRange" class="setting-select">
+          <option value="all" selected>All Views</option>
+          <option value="1k-10k">1K-10K</option>
+          <option value="10k-100k">10K-100K</option>
+          <option value="100k-1m">100K-1M</option>
+          <option value="1m+">1M+</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Quick Tips -->
+    <div class="section tips">
+      <h2>💡 Quick Tips</h2>
+      <ul>
+        <li>🚀 500%+ reach = Super Viral</li>
+        <li>🔥 200-500% reach = Hot Content</li>
+        <li>⭐ 100-200% reach = Good Performance</li>
+        <li>💬 High engagement + reach = A+ Content</li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Made with ❤️ for creators</p>
+      <div class="footer-links">
+        <a href="#" id="supportLink">Support</a>
+        <span>•</span>
+        <a href="#" id="privacyLink">Privacy</a>
+      </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal" id="infoModal" style="display: none;">
+      <div class="modal-content">
+        <h2>🚀 Upgrade to Pro</h2>
+        <div class="features-list">
+          <p>✨ <strong>Unlimited analysis</strong> - No daily limits</p>
+          <p>📊 <strong>Advanced metrics</strong> - Detailed insights</p>
+          <p>🎯 <strong>Export data</strong> - CSV & JSON formats</p>
+          <p>⚡ <strong>Real-time updates</strong> - Live monitoring</p>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn-primary" id="payBtn">💳 Get Pro Access</button>
+          <button class="btn-secondary" id="loginModalBtn">🔑 Login</button>
+          <button class="btn-secondary" id="closeModalBtn">Close</button>
+        </div>
+        <p class="secure-payment">🔒 Secure payment via ExtensionPay</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

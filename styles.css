@@ -1,0 +1,233 @@
+/* Instagram Reels Analyzer - Styles */
+
+/* Reach Rate Badge */
+.reels-analyzer-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.reels-analyzer-badge:hover {
+  transform: scale(1.1);
+}
+
+.reels-analyzer-badge.super-viral {
+  background: linear-gradient(135deg, #ff006e, #ff4500);
+  box-shadow: 0 2px 8px rgba(255, 0, 110, 0.5);
+}
+
+.reels-analyzer-badge.hot {
+  background: linear-gradient(135deg, #ff6b6b, #ffa502);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
+}
+
+.reels-analyzer-badge.good {
+  background: linear-gradient(135deg, #4834d4, #686de0);
+  box-shadow: 0 2px 8px rgba(72, 52, 212, 0.5);
+}
+
+.reels-analyzer-badge.average {
+  background: rgba(60, 60, 60, 0.9);
+}
+
+/* Speed Controls */
+.reels-analyzer-speed {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  gap: 4px;
+  z-index: 10;
+}
+
+.speed-btn {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.speed-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+.speed-btn.active {
+  background: #0095f6;
+  color: white;
+}
+
+/* Main Controls */
+.reels-analyzer-controls {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #fafafa;
+  border-bottom: 1px solid #dbdbdb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.control-btn {
+  background: #0095f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+  background: #0074cc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 149, 246, 0.3);
+}
+
+.control-select {
+  padding: 8px 12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-select:focus {
+  outline: none;
+  border-color: #0095f6;
+  box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.1);
+}
+
+/* Individual Reel Metrics */
+.reels-analyzer-metrics {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  margin: 16px 0;
+  backdrop-filter: blur(20px);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.metric {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.grade {
+  margin-left: auto;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.grade-A\+, .grade-A {
+  color: #4caf50;
+  text-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+}
+
+.grade-B\+, .grade-B {
+  color: #2196f3;
+  text-shadow: 0 0 20px rgba(33, 150, 243, 0.5);
+}
+
+.grade-C {
+  color: #ff9800;
+  text-shadow: 0 0 20px rgba(255, 152, 0, 0.5);
+}
+
+/* Enhanced Speed Controls */
+.reels-analyzer-speed-enhanced {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.speed-btn-enhanced {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.speed-btn-enhanced:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.speed-btn-enhanced.active {
+  background: #0095f6;
+  border-color: #0095f6;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 149, 246, 0.5);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .reels-analyzer-controls {
+    background: #262626;
+    border-bottom-color: #363636;
+  }
+  
+  .control-select {
+    background: #262626;
+    color: white;
+    border-color: #363636;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .reels-analyzer-controls {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .control-btn,
+  .control-select {
+    width: 100%;
+  }
+  
+  .reels-analyzer-metrics {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .grade {
+    margin-left: 0;
+  }
+}
