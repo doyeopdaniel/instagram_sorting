@@ -12,14 +12,19 @@
     "matches": ["https://extensionpay.com/*"]
   },
   "host_permissions": [
-    "https://www.instagram.com/*"
+    "https://www.instagram.com/*",
+    "https://instagram.com/*"
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.instagram.com/*"],
+      "matches": [
+        "https://www.instagram.com/*",
+        "https://instagram.com/*"
+      ],
       "js": ["content.js"],
       "css": ["styles.css"],
-      "run_at": "document_end"
+      "run_at": "document_idle",
+      "world": "MAIN"
     }
   ],
   "background": {
